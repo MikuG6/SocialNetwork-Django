@@ -1,0 +1,51 @@
+version: '3.9'
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    links:
+      - django
+    restart: always
+    networks:
+      - django-network
+    ports:
+      - "80:80"
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - db
+    restart: always
+    ports:
+      - "8001:8000"
+    networks:
+      - django-network
+    command: >
+      bash -c "python3 manage.py migrate &&
+               python3 manage.py create_admin &&
+               python3 manage.py runserver 0.0.0.0:8000"
+
+  db:
+    image: postgres:alpine3.17
+    restart: always
+    environment:
+      POSTGRES_DB: django_service
+      POSTGRES_USER: hes
+      POSTGRES_PASSWORD: lol123
+    volumes:
+      - pgstore:/var/lib/postgresql/data
+    ports:
+      - "5001:5432"
+    networks:
+      - django-network
+
+volumes:
+  pgstore:
+
+networks:
+  django-network:
+    driver: bridge

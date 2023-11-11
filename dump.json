@@ -1,0 +1,498 @@
+[
+  {
+    "model": "service.User",
+    "pk": 1,
+    "fields": {
+      "username": "user1",
+      "email": "user1@gmail.com",
+      "password": "QxMQNMKJJbpgGLefrgrK"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 2,
+    "fields": {
+      "username": "user2",
+      "email": "user2@gmail.com",
+      "password": "snRwhTtEtyqtClncgXLH"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 3,
+    "fields": {
+      "username": "user3",
+      "email": "user3@gmail.com",
+      "password": "WkuRbKoruzWcPhINJvcS"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 4,
+    "fields": {
+      "username": "user4",
+      "email": "user4@gmail.com",
+      "password": "psdfnXqqEpncUpNbsIGO"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 5,
+    "fields": {
+      "username": "user5",
+      "email": "user5@gmail.com",
+      "password": "OMYcQoGsiZMbncwdtgBC"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 6,
+    "fields": {
+      "username": "user6",
+      "email": "user6@gmail.com",
+      "password": "ZMlvMriuqxluvGjLImsc"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 7,
+    "fields": {
+      "username": "user7",
+      "email": "user7@gmail.com",
+      "password": "MxoLBftDPEexSxiSsCmG"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 8,
+    "fields": {
+      "username": "user8",
+      "email": "user8@gmail.com",
+      "password": "CCLAbktVSwhuBdzhdvFU"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 9,
+    "fields": {
+      "username": "user9",
+      "email": "user9@gmail.com",
+      "password": "oJNhGWNaUaAJVDoEWGXQ"
+    }
+  },
+  {
+    "model": "service.User",
+    "pk": 10,
+    "fields": {
+      "username": "user10",
+      "email": "user10@gmail.com",
+      "password": "tBFCYeKJUaxFgeBvzvMd"
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 1,
+    "fields": {
+      "name": "dialog1",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 2,
+    "fields": {
+      "name": "dialog2",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 3,
+    "fields": {
+      "name": "dialog3",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 4,
+    "fields": {
+      "name": "dialog4",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 5,
+    "fields": {
+      "name": "dialog5",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        5,
+        6
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 6,
+    "fields": {
+      "name": "dialog6",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 7,
+    "fields": {
+      "name": "dialog7",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 8,
+    "fields": {
+      "name": "dialog8",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        8,
+        9
+      ]
+    }
+  },
+  {
+    "model": "service.Dialog",
+    "pk": 9,
+    "fields": {
+      "name": "dialog9",
+      "time_create": "2023-11-23 16:04:49",
+      "users": [
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 1,
+    "fields": {
+      "text": "message1",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 1,
+      "dialog": 1
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 2,
+    "fields": {
+      "text": "message2",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 2,
+      "dialog": 2
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 3,
+    "fields": {
+      "text": "message3",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 3,
+      "dialog": 3
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 4,
+    "fields": {
+      "text": "message4",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 4,
+      "dialog": 4
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 5,
+    "fields": {
+      "text": "message5",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 5,
+      "dialog": 5
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 6,
+    "fields": {
+      "text": "message6",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 6,
+      "dialog": 6
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 7,
+    "fields": {
+      "text": "message7",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 7,
+      "dialog": 7
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 8,
+    "fields": {
+      "text": "message8",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 8,
+      "dialog": 8
+    }
+  },
+  {
+    "model": "service.Message",
+    "pk": 9,
+    "fields": {
+      "text": "message9",
+      "time_creation": "2023-11-23 16:04:49",
+      "time_update": "2023-11-23 16:04:49",
+      "text_changed": false,
+      "user": 9,
+      "dialog": 9
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 1,
+    "fields": {
+      "name": "album1",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 1
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 2,
+    "fields": {
+      "name": "album2",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 2
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 3,
+    "fields": {
+      "name": "album3",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 3
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 4,
+    "fields": {
+      "name": "album4",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 4
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 5,
+    "fields": {
+      "name": "album5",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 5
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 6,
+    "fields": {
+      "name": "album6",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 6
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 7,
+    "fields": {
+      "name": "album7",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 7
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 8,
+    "fields": {
+      "name": "album8",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 8
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 9,
+    "fields": {
+      "name": "album9",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 9
+    }
+  },
+  {
+    "model": "service.Album",
+    "pk": 10,
+    "fields": {
+      "name": "album10",
+      "time_creation": "2023-11-23 16:04:49",
+      "user": 10
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 1,
+    "fields": {
+      "description": "description1",
+      "path": "photo1",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 1
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 2,
+    "fields": {
+      "description": "description2",
+      "path": "photo2",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 2
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 3,
+    "fields": {
+      "description": "description3",
+      "path": "photo3",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 3
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 4,
+    "fields": {
+      "description": "description4",
+      "path": "photo4",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 4
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 5,
+    "fields": {
+      "description": "description5",
+      "path": "photo5",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 5
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 6,
+    "fields": {
+      "description": "description6",
+      "path": "photo6",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 6
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 7,
+    "fields": {
+      "description": "description7",
+      "path": "photo7",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 7
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 8,
+    "fields": {
+      "description": "description8",
+      "path": "photo8",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 8
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 9,
+    "fields": {
+      "description": "description9",
+      "path": "photo9",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 9
+    }
+  },
+  {
+    "model": "service.Photo",
+    "pk": 10,
+    "fields": {
+      "description": "description10",
+      "path": "photo10",
+      "time_creation": "2023-11-23 16:04:49",
+      "album": 10
+    }
+  }
+]

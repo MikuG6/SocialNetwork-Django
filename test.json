@@ -1,0 +1,38 @@
+[
+  {
+    "last_login": "2023-11-12T17:55:19.697684Z",
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "date_joined": "2023-11-12T17:39:30.443706Z",
+    "albums": [
+      {
+        "name": "sdadasd",
+        "time_creation": "2023-11-12T23:16:25.712825Z",
+        "photos": [
+          {
+            "path": "dsdasd/adasd/das",
+            "description": "dasdasd",
+            "time_creation": "2023-11-12T23:17:32.065994Z"
+          }
+        ]
+      },
+      {
+        "name": "cxcxzc",
+        "time_creation": "2023-11-12T23:16:30.944406Z",
+        "photos": [
+          {
+            "path": "dasdasd/rtyhf",
+            "description": "dasdasdfds",
+            "time_creation": "2023-11-12T23:17:42.376987Z"
+          },
+          {
+            "path": "ghfh/fgh",
+            "description": "fghfrt",
+            "time_creation": "2023-11-12T23:17:51.905181Z"
+          }
+        ]
+      }
+    ]
+  }
+]

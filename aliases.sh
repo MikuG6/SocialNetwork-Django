@@ -1,0 +1,7 @@
+alias dp='sudo docker ps -a'
+alias di='sudo docker images -a'
+alias drm='sudo docker rm -f'
+alias drmi='sudo docker rmi -f'
+alias dv='sudo docker volume prune'
+alias drmall='drm $(dp -q)'
+alias drmiall='drmi $(di -q)'

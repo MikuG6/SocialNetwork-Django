@@ -1,0 +1,35 @@
+2023-11-23 17:30:33,865 INFO views Ky
+2023-11-23 17:31:30,235 INFO views Ky
+2023-11-23 17:31:31,036 INFO views Ky
+2023-11-23 17:32:10,241 INFO views Ky
+2023-11-23 17:32:10,241 WARNING views geowlok
+2023-11-23 20:33:46,714 INFO views Регистрация пользователя
+2023-11-23 20:33:46,714 INFO views Сериализация данных прошла успешно
+2023-11-23 20:33:46,720 INFO views Сериализированные данные успешно провалидированы
+2023-11-23 20:33:46,834 INFO views Сохранение сериализированных данных
+2023-11-23 20:33:46,834 INFO audit Создание аудита
+2023-11-23 20:33:46,839 INFO audit Создание сообщения
+2023-11-23 20:33:46,839 ERROR audit Аудит не создан Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x7f88d02a3940>": "LogEntry.user" must be a "User" instance.
+2023-11-23 20:33:46,839 INFO views Регистрация прошла успешно
+2023-11-23 20:38:56,490 INFO views Изменение пароля
+2023-11-23 20:38:56,490 INFO audit Создание аудита
+2023-11-23 20:38:56,493 INFO views Сериализация данных прошла успешно
+2023-11-23 20:38:56,493 INFO views Сериализированные данные успешно провалидированы
+2023-11-23 20:38:56,603 INFO views Установка захэшированного пароля
+2023-11-23 20:38:56,610 INFO views Сохронение захэшированного пароля
+2023-11-23 20:38:56,610 INFO views Успешное изменение пароля
+2023-11-23 20:38:56,612 INFO audit Данные для сообщения собраны успешно
+2023-11-23 20:38:56,612 INFO audit Создание сообщения
+2023-11-23 20:38:56,612 INFO audit Сообщение составленно успешно
+2023-11-23 20:38:56,612 INFO audit Создание сообщения
+2023-11-23 20:38:56,613 INFO audit Создание аудита прошло успешно
+{"message": "Connected to DB"}
+{"message": "Connected to DB"}
+{"message": "Connected to DB", "timestamp": "2023-11-23T22:06:47.971621Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-24T15:49:42.308433Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-24T15:50:11.921197Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-24T15:50:48.214078Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-24T15:56:33.133431Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-24T16:07:56.156385Z", "level": "INFO"}
+{"message": "Connected to DB", "user": "AnonymousUser", "timestamp": "2023-11-26T12:06:51.864335Z", "level": "INFO"}
+{"message": "Connected to DB", "timestamp": "2023-11-26T12:11:30.422759Z", "level": "INFO", "user": null}
