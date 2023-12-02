@@ -14,6 +14,3 @@ class Role(models.Model):
     )
     name = models.CharField("Роль", max_length=3, choices=ROLES, default=USR)
     users = models.ManyToManyField(User, related_name="roles")
-
-
-# auditlog.register(Role, m2m_fields={"users"})

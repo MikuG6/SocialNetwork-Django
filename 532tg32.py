@@ -127,92 +127,92 @@
 # #
 # #
 # #
-# # # n = int(input())
-# # # a = [[0 for j in range(n)] for i in range(n)]
-# # #
-# # #
-# # # class SpiralNum:
-# # #     def __init__(self, n, a):
-# # #         self.n = n
-# # #         self.end_prog = 1
-# # #         self.count_insert = n
-# # #         self.count_insert_time = n
-# # #         self.cord_x = 0
-# # #         self.cord_y = 0
-# # #         self.list_matrix = a
-# # #         self.count_insert_end = n ** 2
-# # #
-# # #
-# # #     def end_func(self):
-# # #         for i in range(n):
-# # #             rt = self.list_matrix[i]
-# # #             print(*rt)
-# # #
-# # #
-# # #     def right_fill(self):
-# # #         if self.end_prog != 1:
-# # #             self.cord_x += 1
-# # #         if self.end_prog == self.count_insert_end+1:
-# # #             return self.end_func()
-# # #         while self.count_insert_time != 0:
-# # #             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
-# # #             self.end_prog += 1
-# # #             self.cord_x += 1
-# # #             self.count_insert_time -= 1
-# # #
-# # #         self.cord_x -= 1
-# # #         self.count_insert -= 1
-# # #         self.count_insert_time = self.count_insert
-# # #         self.down_fill()
-# # #
-# # #
-# # #     def down_fill(self):
-# # #         self.cord_y += 1
-# # #         if self.end_prog == self.count_insert_end+1:
-# # #             return self.end_func()
-# # #         while self.count_insert_time != 0:
-# # #             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
-# # #             self.end_prog += 1
-# # #             self.cord_y += 1
-# # #             self.count_insert_time -= 1
-# # #
-# # #         self.cord_y -= 1
-# # #         self.count_insert_time = self.count_insert
-# # #         self.left_fill()
-# # #
-# # #
-# # #     def left_fill(self):
-# # #         self.cord_x -= 1
-# # #         if self.end_prog == self.count_insert_end+1:
-# # #             return self.end_func()
-# # #         while self.count_insert_time != 0:
-# # #             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
-# # #             self.end_prog += 1
-# # #             self.cord_x -= 1
-# # #             self.count_insert_time -= 1
-# # #
-# # #         self.cord_x += 1
-# # #         self.count_insert -= 1
-# # #         self.count_insert_time = self.count_insert
-# # #         self.up_fill()
-# # #
-# # #
-# # #     def up_fill(self):
-# # #         self.cord_y -= 1
-# # #         if self.end_prog == self.count_insert_end+1:
-# # #             return self.end_func()
-# # #         while self.count_insert_time != 0:
-# # #             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
-# # #             self.end_prog += 1
-# # #             self.cord_y -= 1
-# # #             self.count_insert_time -= 1
-# # #
-# # #         self.cord_y += 1
-# # #         self.count_insert_time = self.count_insert
-# # #         self.right_fill()
-# # #
-# # #
-# # # SpiralNum(n, a).right_fill()
+# n = int(input())
+# a = [[0 for j in range(n)] for i in range(n)]
+#
+#
+# class SpiralNum:
+#     def __init__(self, n, a):
+#         self.n = n
+#         self.end_prog = 1
+#         self.count_insert = n
+#         self.count_insert_time = n
+#         self.cord_x = 0
+#         self.cord_y = 0
+#         self.list_matrix = a
+#         self.count_insert_end = n ** 2
+#
+#
+#     def end_func(self):
+#         for i in range(n):
+#             rt = self.list_matrix[i]
+#             print(*rt)
+#
+#
+#     def right_fill(self):
+#         if self.end_prog != 1:
+#             self.cord_x += 1
+#         if self.end_prog == self.count_insert_end+1:
+#             return self.end_func()
+#         while self.count_insert_time != 0:
+#             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
+#             self.end_prog += 1
+#             self.cord_x += 1
+#             self.count_insert_time -= 1
+#
+#         self.cord_x -= 1
+#         self.count_insert -= 1
+#         self.count_insert_time = self.count_insert
+#         self.down_fill()
+#
+#
+#     def down_fill(self):
+#         self.cord_y += 1
+#         if self.end_prog == self.count_insert_end+1:
+#             return self.end_func()
+#         while self.count_insert_time != 0:
+#             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
+#             self.end_prog += 1
+#             self.cord_y += 1
+#             self.count_insert_time -= 1
+#
+#         self.cord_y -= 1
+#         self.count_insert_time = self.count_insert
+#         self.left_fill()
+#
+#
+#     def left_fill(self):
+#         self.cord_x -= 1
+#         if self.end_prog == self.count_insert_end+1:
+#             return self.end_func()
+#         while self.count_insert_time != 0:
+#             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
+#             self.end_prog += 1
+#             self.cord_x -= 1
+#             self.count_insert_time -= 1
+#
+#         self.cord_x += 1
+#         self.count_insert -= 1
+#         self.count_insert_time = self.count_insert
+#         self.up_fill()
+#
+#
+#     def up_fill(self):
+#         self.cord_y -= 1
+#         if self.end_prog == self.count_insert_end+1:
+#             return self.end_func()
+#         while self.count_insert_time != 0:
+#             self.list_matrix[self.cord_y][self.cord_x] = self.end_prog
+#             self.end_prog += 1
+#             self.cord_y -= 1
+#             self.count_insert_time -= 1
+#
+#         self.cord_y += 1
+#         self.count_insert_time = self.count_insert
+#         self.right_fill()
+#
+#
+# SpiralNum(n, a).right_fill()
 # #
 # #
 # #

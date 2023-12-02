@@ -1,19 +1,18 @@
 import logging
 
+import requests
 from auditlog.mixins import LogAccessMixin
-from django.shortcuts import render, HttpResponse
 from django.db import connection, DatabaseError
+from django.shortcuts import HttpResponse
 from rest_framework import viewsets, generics, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from service.audit import change_log, add_log, delete_log
 from service.models import User, Album, Photo, Dialog, Message
-from service.paginations import StandardResultsSetPagination
 from service.serializers import UserProfileSerializer, SelfProfileSerializer, FriendProfileSerializer, \
     ChangePasswordSerializer, ChangeEmailSerializer, ChangeUserInfoSerializer, AlbumSerializer, PhotoSerializer, \
     DialogsListSerializer, MessageListSerializer, RegistrationUserSerializer, MessageCreateSerializer
-
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +43,12 @@ class SelfProfileModelViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
+
+    def get_serializer_context(self):
+        return {
+            **super().get_serializer_context(),
+            "hostname": self.request.build_absolute_uri('/')
+        }
 
 
 class FriendProfileModelViewSet(generics.RetrieveAPIView):
@@ -230,7 +235,8 @@ class MessageCreateAPIView(generics.CreateAPIView):
             logger.error(f"Сообщение не создано {e}", extra={"user": request.user})
 
 
-class UserListAPIView(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserProfileSerializer
-    pagination_class = StandardResultsSetPagination
+def redirect_to_fs_upload(request, uuid_slug):
+    return HttpResponse(
+        content=requests.get(f"http://localhost:8010/download/{uuid_slug}").content,
+        headers={"Content-Disposition": f'attachment; filename="{uuid_slug}.png"'}
+    )

@@ -29,6 +29,18 @@ services:
                python3 manage.py create_admin &&
                python3 manage.py runserver 0.0.0.0:8000"
 
+  file_storage:
+    build:
+      context: FileStorageService
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8010:8000"
+    networks:
+      - django-network
+    command: >
+      bash -c "python3 manage.py runserver 0.0.0.0:8000"
+
   db:
     image: postgres:alpine3.17
     restart: always

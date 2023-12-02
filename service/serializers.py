@@ -1,3 +1,6 @@
+from urllib import parse
+
+from django.urls import reverse
 from rest_framework import serializers
 
 from service.models import User, Photo, Album, Friend, Dialog, Message
@@ -33,8 +36,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return str(obj)
 
 
-class LinkCreationDataSerializer(
-    serializers.ModelSerializer):  # Нужно допилить заявки в друзья и отображения для кнопок
+class LinkCreationDataSerializer(serializers.ModelSerializer):
+    # Нужно допилить заявки в друзья и отображения для кнопок
     """ Сериализатор для отображения даты добавления в друзья """
 
     class Meta:
@@ -52,6 +55,14 @@ class FriendProfileSerializer(UserProfileSerializer):
 
 class SelfProfileSerializer(UserProfileSerializer):
     """ Сериализатор для отображения профиля пользователя который аунтифицирован """
+    avatar = serializers.SerializerMethodField()
+
+    def get_avatar(self, obj):
+        if obj.avatar:
+            return parse.urljoin(self.context.get('hostname'),
+                                 f"{reverse('service:photo-download', kwargs={'uuid_slug': obj.avatar.uuid})}")
+        else:
+            return None
 
     class Meta:
         model = User

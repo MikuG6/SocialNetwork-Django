@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import db_check, UserProfileModelViewSet, SelfProfileModelViewSet, FriendProfileModelViewSet, \
     ChangePasswordAPIView, ChangeEmailAPIView, ChangeUserInfoAPIView, AlbumAPIView, PhotoAPIView, DialogsListAPIView, \
-    DialogAPIView, RegistrationUserAPIView, MessageCreateAPIView, UserListAPIView
+    DialogAPIView, RegistrationUserAPIView, MessageCreateAPIView, redirect_to_fs_upload
 
 urlpatterns = [
     path('check/', db_check),
@@ -17,7 +17,7 @@ urlpatterns = [
     path('self_profile/dialogs/<int:pk>', DialogAPIView.as_view()),  # Просмотр Диалога, Отправка, Изменение, сообщений
     path('self_profile/dialogs/create_message', MessageCreateAPIView.as_view()),  # Создание сообщений в диолог
     path('user_registration', RegistrationUserAPIView.as_view()),  # Регистрация
-    path('list_user', UserListAPIView.as_view()),  # Регистрация
+    path('photo/download/<str:uuid_slug>', redirect_to_fs_upload, name="photo-download"),  #
 
     # Просмотр фотографии
     #
