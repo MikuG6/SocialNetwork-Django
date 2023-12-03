@@ -13,7 +13,8 @@ class JWTAuthenticationMiddleware:
         "/auth/token",
         "/user_registration",
         "/list_user",
-        "/photo/download"
+        "/photo/download",
+        "/swagger"
     ]
 
     def __init__(self, get_response):

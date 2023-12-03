@@ -3,16 +3,20 @@ import logging
 import requests
 from auditlog.mixins import LogAccessMixin
 from django.db import connection, DatabaseError
-from django.shortcuts import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import HttpResponse, get_object_or_404
 from rest_framework import viewsets, generics, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from service.audit import change_log, add_log, delete_log
 from service.models import User, Album, Photo, Dialog, Message
 from service.serializers import UserProfileSerializer, SelfProfileSerializer, FriendProfileSerializer, \
-    ChangePasswordSerializer, ChangeEmailSerializer, ChangeUserInfoSerializer, AlbumSerializer, PhotoSerializer, \
-    DialogsListSerializer, MessageListSerializer, RegistrationUserSerializer, MessageCreateSerializer
+    ChangePasswordSerializer, ChangeEmailSerializer, AlbumSerializer, PhotoSerializer, \
+    DialogsListSerializer, MessageListSerializer, RegistrationUserSerializer, MessageCreateSerializer, \
+    SelfPhotoSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -50,19 +54,8 @@ class SelfProfileModelViewSet(viewsets.ModelViewSet):
             "hostname": self.request.build_absolute_uri('/')
         }
 
-
-class FriendProfileModelViewSet(generics.RetrieveAPIView):
-    """ Как будет отображаться профиль друга """
-    queryset = User.objects.all()
-    serializer_class = FriendProfileSerializer
-
-
-class ChangePasswordAPIView(generics.CreateAPIView):
-    """ Представление для смены пароля """
-    queryset = User.objects.all()
-    serializer_class = ChangePasswordSerializer
-
-    def post(self, request, *args, **kwargs):  # Разобрать эту функцию
+    @action(methods=["post"], detail=False, serializer_class=ChangePasswordSerializer)
+    def change_password(self, request, *args, **kwargs):
         try:
             logger.info("Изменение пароля", extra={"user": request.user})
             with change_log(request.user, request.user):
@@ -81,13 +74,8 @@ class ChangePasswordAPIView(generics.CreateAPIView):
         except Exception as e:
             logger.error(f"Пароль не изменён {e}", extra={"user": request.user})
 
-
-class ChangeEmailAPIView(generics.UpdateAPIView):
-    """ представление для изменения почты """
-    queryset = User.objects.all()
-    serializer_class = ChangeEmailSerializer
-
-    def put(self, request, *args, **kwargs):
+    @action(methods=["put"], detail=False, serializer_class=ChangeEmailSerializer)
+    def change_email(self, request, *args, **kwargs):
         try:
             logger.info("Изменение почты методом PUT", extra={"user": request.user})
             with change_log(request.user, request.user):
@@ -95,21 +83,6 @@ class ChangeEmailAPIView(generics.UpdateAPIView):
                 return super().put(request, *args, **kwargs)
         except Exception as e:
             logger.error(f"Почта не изменена {e}", extra={"user": request.user})
-
-    def patch(self, request, *args, **kwargs):
-        try:
-            logger.info("Изменение почты методом PATCH", extra={"user": request.user})
-            with change_log(request.user, request.user):
-                logger.info("Успешное изменение почты", extra={"user": request.user})
-                return super().patch(request, *args, **kwargs)
-        except Exception as e:
-            logger.error(f"Почта не изменена {e}", extra={"user": request.user})
-
-
-class ChangeUserInfoAPIView(generics.UpdateAPIView):
-    """ представление для изменения личной информации пользователя """
-    queryset = User.objects.all()
-    serializer_class = ChangeUserInfoSerializer
 
     def put(self, request, *args, **kwargs):
         try:
@@ -129,6 +102,11 @@ class ChangeUserInfoAPIView(generics.UpdateAPIView):
         except Exception as e:
             logger.error(f"Данные пользователя не изменены {e}", extra={"user": request.user})
 
+
+class FriendProfileModelViewSet(generics.RetrieveAPIView):
+    """ Как будет отображаться профиль друга """
+    queryset = User.objects.all()
+    serializer_class = FriendProfileSerializer
 
 
 class AlbumAPIView(LogAccessMixin, generics.RetrieveAPIView):
@@ -208,6 +186,8 @@ class RegistrationUserAPIView(generics.CreateAPIView):
             logger.info("Сохранение сериализированных данных", extra={"user": request.user})
             headers = self.get_success_headers(serializer.data)
             add_log(request.user, serializer.instance)
+            Album.objects.create(name="Default Album", user=serializer.instance)
+            logger.info("Default Album был создан", extra={"user": request.user})
             logger.info("Регистрация прошла успешно", extra={"user": request.user})
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         except Exception as e:
@@ -235,8 +215,29 @@ class MessageCreateAPIView(generics.CreateAPIView):
             logger.error(f"Сообщение не создано {e}", extra={"user": request.user})
 
 
-def redirect_to_fs_upload(request, uuid_slug):
+def redirect_to_fs_upload(request, photo_uuid):
     return HttpResponse(
-        content=requests.get(f"http://localhost:8010/download/{uuid_slug}").content,
-        headers={"Content-Disposition": f'attachment; filename="{uuid_slug}.png"'}
+        content=requests.get(f"http://localhost:8010/download/{photo_uuid}").content,
+        headers={"Content-Disposition": f'attachment; filename="{photo_uuid}.png"'}
     )
+
+
+class AddPhotoAPIView(APIView):
+    def post(self, request, photo_uuid, *args, **kwargs):
+        photo = get_object_or_404(Photo, uuid=photo_uuid)
+        if photo.album.user != request.user:
+            return JsonResponse({"err_msg": "Cannot set photo to other user"}, status=403)
+        request.user.avatar = photo
+        request.user.save()
+        return JsonResponse({"status": "OK"}, status=200)
+
+
+class PhotoViewSet(viewsets.ModelViewSet):
+    queryset = Photo.objects.all()
+    serializer_class = SelfPhotoSerializer
+
+    def get_serializer_context(self):
+        return {
+            **super().get_serializer_context(),
+            "hostname": self.request.build_absolute_uri('/')
+        }

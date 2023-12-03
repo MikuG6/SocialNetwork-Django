@@ -11,7 +11,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ["path", "description", "time_creation"]
+        fields = ["uuid", "description", "time_creation"]
 
 
 class AlbumSerializer(serializers.ModelSerializer):
@@ -59,8 +59,7 @@ class SelfProfileSerializer(UserProfileSerializer):
 
     def get_avatar(self, obj):
         if obj.avatar:
-            return parse.urljoin(self.context.get('hostname'),
-                                 f"{reverse('service:photo-download', kwargs={'uuid_slug': obj.avatar.uuid})}")
+            return parse.urljoin(self.context.get('hostname'), obj.avatar.download_link)
         else:
             return None
 
@@ -83,14 +82,6 @@ class ChangeEmailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["email"]
-
-
-class ChangeUserInfoSerializer(serializers.ModelSerializer):
-    """ Сериализатор для изменения данных пользователя """
-
-    class Meta:
-        model = User
-        fields = ["last_login", "username", "first_name", "last_name"]
 
 
 class DialogsListSerializer(serializers.ModelSerializer):
@@ -149,3 +140,21 @@ class MessageCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ["text", "time_creation", "time_update", "text_changed", "user", "dialog"]
+
+
+class SelfPhotoSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField()
+    to_avatar_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Photo
+        fields = ["uuid", "url", "to_avatar_url"]
+
+    def get_url(self, obj):
+        return parse.urljoin(self.context.get('hostname'), obj.download_link)
+
+    def get_to_avatar_url(self, obj):
+        return parse.urljoin(
+            self.context.get('hostname'),
+            f"{reverse('service:set-avatar', kwargs={'photo_uuid': obj.uuid})}"
+        )

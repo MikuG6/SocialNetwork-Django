@@ -1,5 +1,5 @@
-# from auditlog.registry import auditlog
 from django.db import models
+from django.urls import reverse
 
 
 class Photo(models.Model):
@@ -9,5 +9,6 @@ class Photo(models.Model):
     album = models.ForeignKey("Album", on_delete=models.CASCADE, related_name="photos")
     message = models.ManyToManyField("Message", related_name="photos", blank=True)
 
-
-# auditlog.register(Photo, m2m_fields={"message"})
+    @property
+    def download_link(self):
+        return f"{reverse('service:photo-download', kwargs={'photo_uuid': self.uuid})}"
