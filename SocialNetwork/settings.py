@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'service',
     'rest_framework',
     'rest_framework.authtoken',
-    "auditlog",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -65,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'service.middleware.JWTAuthenticationMiddleware',
-    'auditlog.middleware.AuditlogMiddleware',
     "allauth.account.middleware.AccountMiddleware",
 ]
 

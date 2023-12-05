@@ -1,4 +1,3 @@
-# from auditlog.registry import auditlog
 from django.db import models
 from .user import User
 

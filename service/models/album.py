@@ -1,4 +1,3 @@
-# from auditlog.registry import auditlog
 from django.db import models
 
 from .user import User
@@ -10,4 +9,3 @@ class Album(models.Model):
     time_creation = models.DateTimeField(auto_now_add=True)
 
 
-# auditlog.register(Album)

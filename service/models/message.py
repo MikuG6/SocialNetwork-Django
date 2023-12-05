@@ -1,4 +1,3 @@
-# from auditlog.registry import auditlog
 from django.db import models
 
 
@@ -10,5 +9,3 @@ class Message(models.Model):
     time_update = models.DateTimeField(auto_now=True)
     text_changed = models.BooleanField(default=False)
 
-
-# auditlog.register(Message)

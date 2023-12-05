@@ -1,10 +1,10 @@
 import logging
 
 import requests
-from auditlog.mixins import LogAccessMixin
 from django.db import connection, DatabaseError
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse, get_object_or_404
+from django.utils.decorators import classonlymethod
 from rest_framework import viewsets, generics, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -19,6 +19,7 @@ from service.serializers import UserProfileSerializer, SelfProfileSerializer, Fr
     SelfPhotoSerializer
 
 logger = logging.getLogger(__name__)
+
 
 def db_check(request):
     """ Проверка подключения к БД """
@@ -44,6 +45,11 @@ class SelfProfileModelViewSet(viewsets.ModelViewSet):
     """ Как будет отображаться свой профиль пользователя """
     queryset = User.objects.all()
     serializer_class = SelfProfileSerializer
+
+    @classonlymethod
+    def as_view(cls, actions=None, **initkwargs):
+        print(actions)
+        return super().as_view(actions=actions, **initkwargs)
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
@@ -104,13 +110,13 @@ class SelfProfileModelViewSet(viewsets.ModelViewSet):
 
 
 class FriendProfileModelViewSet(generics.RetrieveAPIView):
-    """ Как будет отображаться профиль друга """
+    """Как будет отображаться профиль друга"""
     queryset = User.objects.all()
     serializer_class = FriendProfileSerializer
 
 
-class AlbumAPIView(LogAccessMixin, generics.RetrieveAPIView):
-    """ представлени для просмотра альбома """
+class AlbumAPIView(generics.RetrieveAPIView):
+    """Представление для просмотра альбома"""
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
     lookup_url_kwarg = "album_pk"
@@ -123,7 +129,7 @@ class PhotoAPIView(generics.RetrieveAPIView):
 
 
 class DialogsListAPIView(generics.ListCreateAPIView):
-    """Представление для отображения списка диологов и создания новых"""
+    """Представление для отображения списка диалогов и создания новых"""
     queryset = Dialog.objects.all()
     serializer_class = DialogsListSerializer
 
