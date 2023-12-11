@@ -38,4 +38,4 @@ pytest test/
 ```
 
 ## Deployment Scheme
-![Project](https://github.com/MikuG6/SocialNetwork-Django/assets/83876860/5d2029b2-f3d3-43f4-9f82-bfe167765a77)
+![Project (1)](https://github.com/MikuG6/SocialNetwork-Django/assets/83876860/21353878-6ca4-4ed2-894a-6e1c57aef66a)
