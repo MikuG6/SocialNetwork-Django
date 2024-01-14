@@ -21,4 +21,4 @@ def test_unauthorized_request2(api_client, auth_bearer_token):
     url = reverse('service:self_profile')
     api_client.credentials(HTTP_AUTHORIZATION='Bearer ' + auth_bearer_token)
     response = api_client.get(url)
-    assert response.status_code == 2001
+    assert response.status_code == 200

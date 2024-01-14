@@ -1,5 +1,6 @@
 version: '3.9'
 
+
 services:
   nginx:
     build:
@@ -11,7 +12,9 @@ services:
     networks:
       - django-network
     ports:
-      - "80:80"
+      - ${ENGINX_PORT}
+    env_file:
+      - .env
 
   django:
     build:
@@ -20,8 +23,8 @@ services:
     links:
       - db
     restart: always
-    ports:
-      - "8001:8000"
+    env_file:
+      - .env
     networks:
       - django-network
     command: >
@@ -34,26 +37,26 @@ services:
       context: FileStorageService
       dockerfile: Dockerfile
     restart: always
-    ports:
-      - "8010:8000"
     networks:
       - django-network
     command: >
       bash -c "python3 manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
 
   db:
     image: postgres:alpine3.17
     restart: always
     environment:
-      POSTGRES_DB: django_service
-      POSTGRES_USER: hes
-      POSTGRES_PASSWORD: lol123
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
     volumes:
       - pgstore:/var/lib/postgresql/data
-    ports:
-      - "5001:5432"
     networks:
       - django-network
+    env_file:
+      - .env
 
 volumes:
   pgstore:

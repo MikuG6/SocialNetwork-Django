@@ -17,6 +17,7 @@ from django.conf import settings
 from pythonjsonlogger.jsonlogger import JsonFormatter
 
 from SocialNetwork.logging_formatters import CustomJsonFormatter
+from config import SECRET_KEY, DB_HOST_TEST, DB_PORT_TEST, DB_NAME_TEST, DB_USER_TEST, DB_PASS_TEST
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p9is)r#t*y_$j=0a#hm=oq4r_pvlovuqrvtq_d$@l2e(eu0o&i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -102,20 +102,14 @@ WSGI_APPLICATION = 'SocialNetwork.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-POSTGRES_PORT = os.environ.get("POSTGRES_PORT", "5001")
-POSTGRES_NAME = os.environ.get("POSTGRES_NAME", "django_service")
-POSTGRES_USER = os.environ.get("POSTGRES_USER", "hes")
-POSTGRES_PASS = os.environ.get("POSTGRES_PASS", "lol123")
-POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "localhost")
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': POSTGRES_NAME,
-        'USER': POSTGRES_USER,
-        'PASSWORD': POSTGRES_PASS,
-        'HOST': POSTGRES_HOST,
-        'PORT': POSTGRES_PORT,
+        'NAME': DB_NAME_TEST,
+        'USER': DB_USER_TEST,
+        'PASSWORD': DB_PASS_TEST,
+        'HOST': DB_HOST_TEST,
+        'PORT': DB_PORT_TEST,
     }
 }
 
@@ -161,7 +155,7 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": False,
     "UPDATE_LAST_LOGIN": True,
 
-    "SIGNING_KEY": settings.SECRET_KEY,
+    "SIGNING_KEY": SECRET_KEY,
     "AUDIENCE": None,
     "ISSUER": None,
     "JWK_URL": None,
@@ -229,10 +223,3 @@ STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
-
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = None
-EMAIL_HOST_PASSWORD = None
-EMAIL_PORT = 587

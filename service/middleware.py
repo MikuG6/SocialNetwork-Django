@@ -1,5 +1,5 @@
 import jwt
-from django.conf import settings
+from config import SECRET_KEY
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from rest_framework.exceptions import AuthenticationFailed, NotAuthenticated
@@ -14,7 +14,8 @@ class JWTAuthenticationMiddleware:
         "/user_registration",
         "/list_user",
         "/photo/download",
-        "/swagger"
+        "/swagger",
+        "/check"
     ]
 
     def __init__(self, get_response):
@@ -28,7 +29,7 @@ class JWTAuthenticationMiddleware:
         except (AuthenticationFailed, NotAuthenticated):
             return JsonResponse(data={}, status=401)
         except Exception as e:
-            print(f"Ty dolbaeb: {e}")
+            print(f"Ty: {e}")
         return self.get_response(request)
 
     def is_need_to_validate_auth(self, request):
@@ -41,7 +42,7 @@ class JWTAuthenticationMiddleware:
             raise NotAuthenticated()
 
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
         except jwt.DecodeError:
             raise AuthenticationFailed()
         return payload
